@@ -1,0 +1,12 @@
+{
+  "name": "@aneron/job-lease",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Lease a background job on one plane, and refuse a result that arrives on another.",
+  "license": "MIT",
+  "exports": "./src/index.js",
+  "scripts": {
+    "test": "node --test"
+  }
+}
