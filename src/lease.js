@@ -20,8 +20,10 @@ export function createQueue() {
       const job = jobs.get(id);
       if (!job) return { ok: false, reason: "missing" };
       if (job.plane !== plane) return { ok: false, reason: "plane_mismatch", job };
-      if (job.state === "done" || job.state === "failed") return { ok: false, reason: "closed", job };
-      if (job.state === "leased" && job.leasedBy !== worker) return { ok: false, reason: "leased", job };
+      if (job.state === "done" || job.state === "failed")
+        return { ok: false, reason: "closed", job };
+      if (job.state === "leased" && job.leasedBy !== worker)
+        return { ok: false, reason: "leased", job };
       job.state = "leased";
       job.leasedBy = worker;
       job.at = nowMs;
@@ -31,7 +33,8 @@ export function createQueue() {
       const job = jobs.get(id);
       if (!job) return { ok: false, reason: "missing" };
       if (job.plane !== plane) return { ok: false, reason: "plane_mismatch", job };
-      if (job.state !== "leased" || job.leasedBy !== worker) return { ok: false, reason: "not_owner", job };
+      if (job.state !== "leased" || job.leasedBy !== worker)
+        return { ok: false, reason: "not_owner", job };
       job.state = "done";
       job.result = result;
       job.at = nowMs;
@@ -59,6 +62,6 @@ export function createQueue() {
       }
       return expired;
     },
-    get
+    get,
   };
 }
